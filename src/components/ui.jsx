@@ -1,7 +1,15 @@
-import { forwardRef, useImperativeHandle, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useInView,
+  useMotionValue,
+  animate,
+} from 'framer-motion';
 import { Star, ArrowRight } from 'lucide-react';
 import { cx, EASE } from '../lib/utils';
+import { useReducedMotion } from '../lib/motion';
 
 /* ------------------------------------------------------------------ */
 /* Image                                                               */
@@ -22,6 +30,7 @@ export function Img({
         alt={alt}
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
+        fetchPriority={priority ? 'high' : 'auto'}
         sizes={sizes}
         className={cx('h-full w-full object-cover', imgClassName)}
       />
@@ -64,7 +73,7 @@ export function Eyebrow({ children, light = false, className }) {
     <span
       className={cx(
         'inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.22em]',
-        light ? 'text-cream/60' : 'text-ink/45',
+        light ? 'text-cream/60' : 'text-ink/70',
         className
       )}
     >
@@ -97,8 +106,9 @@ export function SectionHeader({
         </FadeUp>
         <FadeUp delay={0.08}>
           <h2 className="mt-4 font-serif text-[2rem] leading-[1.06] tracking-[-0.025em] sm:text-5xl sm:leading-[1.04]">
-            <span className="text-accent">{accent}</span>{' '}
-            <span className="text-ink">{rest}</span>
+            <WordReveal text={accent} className="text-accent" />
+            <span className="inline-block w-[0.24em]" aria-hidden="true" />
+            <WordReveal text={rest} className="text-ink" />
           </h2>
         </FadeUp>
         {children}
@@ -325,5 +335,91 @@ export function RailArrows({ target, className }) {
         </button>
       ))}
     </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Scroll-linked word reveal                                           */
+/* ------------------------------------------------------------------ */
+
+function Word({ progress, range, children }) {
+  const opacity = useTransform(progress, range, [0.14, 1]);
+  const y = useTransform(progress, range, [16, 0]);
+  return (
+    <motion.span
+      style={{ opacity, y }}
+      className="mr-[0.26em] inline-block will-change-transform last:mr-0"
+    >
+      {children}
+    </motion.span>
+  );
+}
+
+/**
+ * Reveals a heading word by word, driven by its own scroll position.
+ * Falls back to plain text for reduced-motion users.
+ */
+export function WordReveal({ text, className }) {
+  const ref = useRef(null);
+  const reduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start 0.92', 'start 0.55'],
+  });
+
+  if (reduced) {
+    return <span className={cx('inline', className)}>{text}</span>;
+  }
+
+  const words = text.split(' ');
+  return (
+    <span ref={ref} className={cx('inline', className)}>
+      {words.map((word, i) => (
+        <Word
+          key={`${word}-${i}`}
+          progress={scrollYProgress}
+          range={[i / words.length, (i + 1) / words.length]}
+        >
+          {word}
+        </Word>
+      ))}
+    </span>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Animated counter                                                    */
+/* ------------------------------------------------------------------ */
+
+export function Counter({
+  to,
+  decimals = 0,
+  suffix = '',
+  prefix = '',
+  duration = 1.6,
+  className,
+}) {
+  const ref = useRef(null);
+  const reduced = useReducedMotion();
+  const inView = useInView(ref, { once: true, margin: '-30px' });
+  const count = useMotionValue(0);
+  const display = useTransform(count, (v) => Number(v).toFixed(decimals));
+
+  useEffect(() => {
+    if (!inView) return undefined;
+    if (reduced) {
+      count.set(to);
+      return undefined;
+    }
+    const controls = animate(count, to, { duration, ease: EASE });
+    return () => controls.stop();
+  }, [inView, reduced, to, duration, count]);
+
+  return (
+    <span ref={ref} className={className}>
+      {prefix}
+      <motion.span>{display}</motion.span>
+      {suffix}
+    </span>
   );
 }

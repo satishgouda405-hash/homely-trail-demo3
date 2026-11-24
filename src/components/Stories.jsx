@@ -19,7 +19,7 @@ function StoryCard({ story, index }) {
             />
             <div>
               <p className="text-sm font-semibold">{story.name}</p>
-              <p className="mt-0.5 text-[11px] text-ink/45">{story.date}</p>
+              <p className="mt-0.5 text-[11px] text-ink/70">{story.date}</p>
             </div>
           </div>
           <span className="rounded-full bg-accent/10 px-2.5 py-1 text-[10px] font-semibold text-accent">
@@ -45,7 +45,7 @@ function StoryCard({ story, index }) {
           {story.quote}
         </p>
 
-        <p className="mt-5 border-t border-ink/[0.07] pt-4 text-[11px] text-ink/40">
+        <p className="mt-5 border-t border-ink/[0.07] pt-4 text-[11px] text-ink/65">
           {story.property}
         </p>
       </article>
@@ -74,11 +74,10 @@ export default function Stories() {
           ))}
         </DragRail>
 
-        <div className="mt-2 flex items-center justify-between">
-          <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-ink/35">
+        <div className="mt-2 flex items-center">
+          <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-ink/65">
             230+ verified reviews
           </span>
-          <RailArrows target={railRef} />
         </div>
       </div>
     </section>

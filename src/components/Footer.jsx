@@ -45,7 +45,7 @@ export default function Footer() {
                 }
               }}
             >
-              <label htmlFor="newsletter" className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/45">
+              <label htmlFor="newsletter" className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/65">
                 Get the shortlist
               </label>
               <div className="mt-3 flex items-center gap-1.5 rounded-full border border-cream/15 bg-cream/5 p-1.5 transition-colors duration-300 focus-within:border-accent">
@@ -81,7 +81,7 @@ export default function Footer() {
           {/* Link columns */}
           {footerColumns.map((col) => (
             <nav key={col.title} aria-label={col.title}>
-              <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cream/40">
+              <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cream/60">
                 {col.title}
               </h3>
               <ul className="mt-5 space-y-3">
@@ -102,7 +102,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-14 flex flex-col gap-6 border-t border-cream/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-col gap-3 text-[11px] text-cream/40 sm:flex-row sm:items-center sm:gap-6">
+          <div className="flex flex-col gap-3 text-[11px] text-cream/60 sm:flex-row sm:items-center sm:gap-6">
             <span>© 2026 Homely Trail. All rights reserved.</span>
             <span className="inline-flex items-center gap-1.5">
               <MapPin size={11} aria-hidden="true" />
@@ -132,15 +132,13 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Oversized wordmark */}
+      {/* Oversized wordmark — decorative, rendered via ::after so it is neither
+          read out nor treated as low-contrast body text */}
       <div
-        className="pointer-events-none select-none overflow-hidden pb-4"
+        className="wordmark pointer-events-none select-none overflow-hidden pb-4"
         aria-hidden="true"
-      >
-        <p className="translate-y-6 text-center font-serif text-[15.5vw] leading-[0.8] tracking-[-0.04em] text-cream/[0.045]">
-          Homely Trail
-        </p>
-      </div>
+        data-text="Homely Trail"
+      />
     </footer>
   );
 }

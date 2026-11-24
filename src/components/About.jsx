@@ -1,10 +1,10 @@
 import { ArrowUpRight, Check } from 'lucide-react';
-import { FadeUp, Eyebrow, Img } from './ui';
+import { FadeUp, Eyebrow, Img, Counter } from './ui';
 
 const stats = [
-  { value: '9', suffix: 'yrs', label: 'Years' },
-  { value: '18k', suffix: '+', label: 'Guests' },
-  { value: '12', suffix: '', label: 'Cities' },
+  { value: 9, suffix: 'yrs', label: 'Years' },
+  { value: 18, suffix: 'k+', label: 'Guests' },
+  { value: 12, suffix: '', label: 'Cities' },
 ];
 
 const points = ['Locally owned homes', 'No hidden fees', 'Human support, 24/7'];
@@ -30,7 +30,7 @@ export default function About() {
           </FadeUp>
 
           <FadeUp delay={0.14}>
-            <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-ink/60">
+            <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-ink/70">
               We started with a single apartment in HSR Layout and a stubborn belief:
               that a rented home should feel the way a home does. Nine years later we
               look after 120 houses across twelve cities, each one chosen for its light,
@@ -65,10 +65,12 @@ export default function About() {
                   <dt className="sr-only">{s.label}</dt>
                   <dd>
                     <span className="font-serif text-[26px] leading-none tracking-tight sm:text-3xl">
-                      {s.value}
-                      <span className="text-accent">{s.suffix}</span>
+                      <Counter
+                        to={s.value}
+                        suffix={<span className="text-accent">{s.suffix}</span>}
+                      />
                     </span>
-                    <span className="mt-1.5 block text-[10px] font-medium uppercase tracking-[0.16em] text-ink/40">
+                    <span className="mt-1.5 block text-[10px] font-medium uppercase tracking-[0.16em] text-ink/65">
                       {s.label}
                     </span>
                   </dd>

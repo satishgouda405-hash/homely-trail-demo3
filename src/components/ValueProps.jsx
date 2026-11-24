@@ -21,7 +21,7 @@ export default function ValueProps() {
                   {v.index}
                 </span>
 
-                <Eyebrow className="text-ink/40">{v.eyebrow}</Eyebrow>
+                <Eyebrow className="text-ink/65">{v.eyebrow}</Eyebrow>
 
                 <h3
                   id={i === 0 ? 'value-heading' : undefined}
@@ -31,7 +31,7 @@ export default function ValueProps() {
                   <span className="text-ink">{v.rest}</span>
                 </h3>
 
-                <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink/60">
+                <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink/70">
                   {v.body}
                 </p>
 
@@ -58,7 +58,7 @@ export default function ValueProps() {
                     </div>
                   ))}
 
-                  <span className="ml-auto hidden whitespace-nowrap rounded-full border border-ink/10 bg-white/50 px-4 py-2 text-[11px] font-medium text-ink/60 backdrop-blur-sm sm:block">
+                  <span className="ml-auto hidden whitespace-nowrap rounded-full border border-ink/10 bg-white/50 px-4 py-2 text-[11px] font-medium text-ink/70 backdrop-blur-sm sm:block">
                     {v.price}
                   </span>
                 </div>

@@ -27,7 +27,7 @@ export default function TrustStrip() {
                       <Stars rating={p.rating} size={11} />
                       <span className="text-xs font-semibold text-ink">{p.rating}</span>
                     </div>
-                    <p className="mt-1 text-[11px] text-ink/45">{p.reviews} reviews</p>
+                    <p className="mt-1 text-[11px] text-ink/70">{p.reviews} reviews</p>
                   </div>
                 </div>
               </FadeUp>

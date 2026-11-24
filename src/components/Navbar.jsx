@@ -150,7 +150,7 @@ export default function Navbar() {
                   Book a Stay
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </a>
-                <p className="mt-6 text-center text-xs text-ink/45">
+                <p className="mt-6 text-center text-xs text-ink/70">
                   120+ curated homestays · 4.9 guest rating
                 </p>
               </motion.div>
