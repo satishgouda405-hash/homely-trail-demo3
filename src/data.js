@@ -291,25 +291,29 @@ export const rooms = [
   {
     name: 'Living Room',
     size: '420 sq ft',
-    image: unsplash('photo-1618221195710-dd6b41faaea6', 1800),
+    image: unsplash('photo-1618221195710-dd6b41faaea6', 1400),
+    card: unsplash('photo-1618221195710-dd6b41faaea6', 520),
     alt: 'Escapinocle living room with low seating and warm afternoon light',
   },
   {
     name: 'Bedroom',
     size: '260 sq ft',
-    image: unsplash('photo-1631049307264-da0ec9d70304', 1800),
+    image: unsplash('photo-1631049307264-da0ec9d70304', 1400),
+    card: unsplash('photo-1631049307264-da0ec9d70304', 520),
     alt: 'Escapinocle bedroom with a linen dressed bed',
   },
   {
     name: 'Kitchen',
     size: '180 sq ft',
-    image: unsplash('photo-1600566753376-12c8ab7fb75b', 1800),
+    image: unsplash('photo-1600566753376-12c8ab7fb75b', 1400),
+    card: unsplash('photo-1600566753376-12c8ab7fb75b', 520),
     alt: 'Escapinocle kitchen with open shelving',
   },
   {
     name: 'Bath',
     size: '120 sq ft',
-    image: unsplash('photo-1616627547584-bf28cee262db', 1800),
+    image: unsplash('photo-1616627547584-bf28cee262db', 1400),
+    card: unsplash('photo-1616627547584-bf28cee262db', 520),
     alt: 'Escapinocle bathroom with stone finishes',
   },
 ];
